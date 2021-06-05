@@ -25,8 +25,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('site', 'App\Http\Controllers\UserController@index')->middleware('auth:web');
 
+
 Route::group(['prefix'=>LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function () {
-    Route::get('admin', 'App\Http\Controllers\CategoryController@index')->middleware('auth');
+    Route::get('admin', 'App\Http\Controllers\CategoryController@index')->middleware('auth:admin');
 });
 
 Route::get('admin/login', 'App\Http\Controllers\AdminController@login');
