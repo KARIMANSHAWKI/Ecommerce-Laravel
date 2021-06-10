@@ -17,10 +17,12 @@
                         <div class="form-group">
                             <label for="nameUser">Name</label>
                             <input type="text" class="form-control" name="nameUser" id="nameUser">
+                            <span class="text-danger error-text name_error"></span>
                         </div>
                         <div class="form-group">
                             <label for="emailUser">Email</label>
                             <input type="email" class="form-control" name="emailUser" id="emailUser">
+                            <span class="text-danger error-text email_error"></span>
                         </div>
                         <div class="form-group">
                             <input type="file" class="form-control-file" name="imageUser" id="imageUser"
@@ -30,6 +32,7 @@
                                     Picture</b></a>
                             <span id="store_image" style="width:100px ;height:100px; margin-left:100px"></span>
                         </div>
+                        <span class="text-danger error-text image_error"></span>
                         <button type="submit" class="btn btn-success" id="updateUserBtn">Update</button>
                     </form>
                 </div>

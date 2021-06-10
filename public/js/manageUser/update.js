@@ -20,23 +20,31 @@ $(document).ready(function () {
             contentType: false,
             cache: false,
             processData: false,
+            beforeSend: function () {
+                $(document).find("span.error-text").text("");
+            },
             success: function (response) {
-                console.log(response);
-                $("#sid" + response.id + " td:nth-child(1)").text(response.id);
-                $("#sid" + response.id + " td:nth-child(2)").text(
-                    response.name
+                if (response.status==0) {
+                    $.each(response.error, function (prefix, val) {
+                        $("span." + prefix + "_error").text(val[0]);
+                    });
+                }else{
+                $("#sid" + response.data.id + " td:nth-child(1)").text(response.data.id);
+                $("#sid" + response.data.id + " td:nth-child(2)").text(
+                    response.data.name
                 );
-                $("#sid" + response.id + " td:nth-child(3)").text(
-                    response.email
+                $("#sid" + response.data.id + " td:nth-child(3)").text(
+                    response.data.email
                 );
                 // $("#sid" + response.id + "td:nth-child(4)").text(response.name);
                 $("#store_image").html(
-                    `<img src="{{ asset('../../images/user/${response.image}') }}" width="100" style="border-radius:50%">`
+                    `<img src="{{ asset('../../images/user/${response.data.image}') }}" width="100" style="border-radius:50%">`
                 );
 
                 $("#userUpdateModel").modal("toggle");
                 $("#userEditForm")[0].reset();
-            },
+            }
+            }
         });
     });
 

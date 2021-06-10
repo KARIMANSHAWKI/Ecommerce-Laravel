@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,9 +32,9 @@ Route::group(['prefix'=>LaravelLocalization::setLocale(), 'middleware' => [ 'loc
 
 // ************* Routes With Post Method ******************* //
 
-// Category Opertions
 Route::post('admin/login', 'App\Http\Controllers\AdminController@checkAdminLogin')->name('save.admin.login');
 
+// Category Opertions
 Route::post('/add-category', 'App\Http\Controllers\CategoryController@addCategory')->name('add.category');
 Route::put('/updateCategory', 'App\Http\Controllers\CategoryController@updateCategory')->name('category.update');
 Route::delete('/category/{id}', 'App\Http\Controllers\CategoryController@destroy')->name('category.delete');
