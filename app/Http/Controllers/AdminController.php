@@ -13,8 +13,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        // $users = User::orderBy('id', 'DESC')->get();
-        // return view('admin.dashboard', compact('users'));
+      
     }
 
     public function login()

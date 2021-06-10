@@ -9,13 +9,6 @@ use DB;
 
 class RoleController extends Controller
 {
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-
-
     public function __construct()
     {
         $this->middleware('permission:عرض صلاحية', ['only' => ['index']]);
