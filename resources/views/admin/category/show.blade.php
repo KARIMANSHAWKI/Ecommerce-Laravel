@@ -40,7 +40,6 @@
         </div>
     </div>
 
-     @extends('admin.category.create')
      @extends('admin.category.update')
 
 @endsection

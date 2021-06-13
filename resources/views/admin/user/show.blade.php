@@ -29,13 +29,13 @@
                             <td><img src="{{ asset('images/user/' . $user->image) }}" style="border-radius: 50%"
                                     width="100" height="100"></td>
                             <td>
-                                @if (!empty($user->phone))
+                                {{-- @if (!empty($user->phone))
                         <tr>
-                            @foreach ($user->phones->pluck['phone'] as $phone)
+                            {{-- @foreach ($user->phones->pluck['phone'] as $phone)
                                 {{ $phone }} <br>
-                            @endforeach
-                        </tr>
-                    @endif
+                            @endforeach --}}
+                        {{-- </tr> --}}
+                    {{-- @endif --}} --}}
                     </td>
                     <td>
                         <a href="javascript:void(0)" id="editUser" class="btn btn-info" data-toggle="modal"

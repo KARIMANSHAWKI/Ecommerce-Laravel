@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Models\News;
+use App\Models\Admin;
+
+use App\Http\Controllers\NewsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,8 +30,6 @@ Route::group(['prefix'=>LaravelLocalization::setLocale(), 'middleware' => [ 'loc
 
     Route::get('/manageUser', 'App\Http\Controllers\UserController@index')->name('user.manage');
     Route::get('/user/{id}', 'App\Http\Controllers\UserController@getUserById');
-
-
 });
 
 // ************* Routes With Post Method ******************* //
@@ -46,7 +48,11 @@ Route::put('/update-user', 'App\Http\Controllers\UserController@updateUser')->na
 Route::delete('/user/{id}', 'App\Http\Controllers\UserController@destroy')->name('user.delete');
 
 
+// &&&&&&&&&&&&& Repository Base &&&&&&&&&&&&
+Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index');
+Route::get('/news/create', 'App\Http\Controllers\NewsController@showModel')->name('news.create');
 
-
-
-
+Route::post('/news/create', 'App\Http\Controllers\NewsController@store')->name('news.createModel');
+Route::get('/news/edit/{id}', 'App\Http\Controllers\NewsController@getEdit')->name('news.edit');
+Route::put('/news/update', 'App\Http\Controllers\NewsController@update')->name('news.update');
+Route::delete('/news/destroy/{id}', 'App\Http\Controllers\NewsController@destroy')->name('news.destroy');

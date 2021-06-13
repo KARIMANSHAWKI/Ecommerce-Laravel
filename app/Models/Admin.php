@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-
+use App\Models\News;
 
 class Admin extends Authenticatable
 {
@@ -19,4 +19,11 @@ class Admin extends Authenticatable
         'email',
         'password',
     ];
+
+
+    public function news () {
+        return $this->hasMany(News::class, 'admin_id');
+    }
+
+
 }

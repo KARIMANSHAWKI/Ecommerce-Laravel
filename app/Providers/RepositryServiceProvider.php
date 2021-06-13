@@ -4,20 +4,23 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class RepositryServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
     public function register()
     {
-        $this->app->singleton(NewsRepositryInterface::class, EloquentTodo::class);
+        $this->app->bind(
+            'App\Http\Interfaces\NewsRepositryInterface',
+            'App\Http\Eloquent\NewsRepositry'
+        );
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
