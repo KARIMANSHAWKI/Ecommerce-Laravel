@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
+
+class Product extends Model
+{
+    use HasFactory;
+    protected $fillable = ["name", "descriptin", "price", "image", "category_id"];
+
+    function getAdmin()
+    {
+       $this->belongsTo(Category::class);
+    }
+
+
+}
