@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,11 +12,11 @@ class SiteController extends Controller
 {
     public function index(){
         $categories = Category::orderBy('id', 'DESC')->get();
-        return view('user.home', compact('categories'));
+        $products = Product::orderBy('id', 'DESC')->get();
+        return view('site.home')->with('categories', $categories)->with('products', $products);
     }
 
     public function allProduct(){
-        $products = Product::orderBy('id', 'DESC')->get();
 
     }
 }

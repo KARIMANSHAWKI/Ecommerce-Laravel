@@ -8,12 +8,13 @@ use App\Models\News;
 use App\Models\Admin;
 use App\Http\Livewire\NewsLiveWire;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\NewsController;
 
 // ............... User ............
-use App\Http\Controllers\User\SiteController;
+use  App\Http\Controllers\Site\SiteController;
+use  App\Http\Controllers\Site\CartController;
 
-use App\Http\Controllers\NewsController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -75,5 +76,11 @@ Route::delete('/news/destroy/{id}', 'App\Http\Controllers\NewsController@destroy
 
 // ................................. USER .......................................
 
-Route::get('/site', [SiteController::class, 'index'])->middleware('auth');
+Route::get('/site', [SiteController::class, 'index']);
+Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart.index');
+
+// Route::get('cart/{id}', function(){
+//     return "hello";
+// })->name('cart.index');
+
 
