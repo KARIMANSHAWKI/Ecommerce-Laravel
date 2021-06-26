@@ -21,9 +21,9 @@
                 <div class="card-body">
                     <h2 class="card-title">{{$product->name}}</h2>
                     <p class="card-text">{{$product->descriptin}}</p>
-                    <h2 class="card-title">price : {{$product->price}} $</h2>
-                    <form action="" method="post">
-                        @csrf
+                    <h2 class="card-title">price : {{$product->price}}$</h2>
+                    <form action="{{url('add-to-cart')}}" method="post">
+                        {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{$product->id}}">
                         Quntity : <input type="number" name="quantity" id="quantity">
                         <button type="submit" class="btn btn-primary" style="display: block; margin-top:20px">Add To Cart</button>

@@ -53,6 +53,7 @@ Route::delete('/category/{id}', 'App\Http\Controllers\CategoryController@destroy
 
 // User OPerations
 Route::post('/adduser', 'App\Http\Controllers\UserController@addUser')->name('add.user');
+Route::get('/logout', 'App\Http\Controllers\UserController@logOut')->name('user.logout');
 Route::put('/update-user', 'App\Http\Controllers\UserController@updateUser')->name('user.update');
 Route::delete('/user/{id}', 'App\Http\Controllers\UserController@destroy')->name('user.delete');
 
@@ -76,8 +77,9 @@ Route::delete('/news/destroy/{id}', 'App\Http\Controllers\NewsController@destroy
 
 // ................................. USER .......................................
 
-Route::get('/site', [SiteController::class, 'index']);
+Route::get('/site', [SiteController::class, 'index'])->name('site.index');
 Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart.index');
+Route::post('/add-to-cart',[CartController::class, 'addToCart']);
 
 // Route::get('cart/{id}', function(){
 //     return "hello";

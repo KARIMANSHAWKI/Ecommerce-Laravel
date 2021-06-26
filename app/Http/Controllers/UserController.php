@@ -9,6 +9,7 @@ use Auth;
 use Illuminate\Support\Facades\File;
 use  App\Http\Requests\CreateUserRequest;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class UserController extends Controller
 {
@@ -139,4 +140,8 @@ class UserController extends Controller
             'image' => $user->image
         ];
     }
+
+    public function logout() { 
+        Session::flush();
+         return redirect()->route('site.index'); }
 }
