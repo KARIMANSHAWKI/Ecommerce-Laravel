@@ -13,6 +13,7 @@ use App\Http\Controllers\NewsController;
 // ............... User ............
 use  App\Http\Controllers\Site\SiteController;
 use  App\Http\Controllers\Site\CartController;
+use App\Http\Controllers\Site\ItemsController;
 
 
 
@@ -80,9 +81,6 @@ Route::delete('/news/destroy/{id}', 'App\Http\Controllers\NewsController@destroy
 Route::get('/site', [SiteController::class, 'index'])->name('site.index');
 Route::get('/cart/{id}', [CartController::class, 'index'])->name('cart.index');
 Route::post('/add-to-cart',[CartController::class, 'addToCart']);
-
-// Route::get('cart/{id}', function(){
-//     return "hello";
-// })->name('cart.index');
+Route::get('/my-items',[ItemsController::class, 'index'])->name('cart.items');
 
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Product;
 
 class User extends Authenticatable
 {
@@ -28,7 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'pivot'
     ];
+
+    public function products(){
+        return $this->belongsToMany(Product::class, 'user_product')->withPivot('quantity');
+    }
 
     /**
      * The attributes that should be cast to native types.
@@ -38,6 +44,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 
 
 }

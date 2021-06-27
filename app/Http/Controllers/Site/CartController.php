@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Site;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\User;
+
 use App\Http\Controllers\Controller;
 
 use Auth;
@@ -15,7 +17,7 @@ class CartController extends Controller
     public function index($id)
     {
         $product = Product::find($id);
-        $cartCount = cartCount();
+        // $cartCount = cartCount();
         return view('site.cart')->with('product', $product);
     }
 
@@ -25,11 +27,11 @@ class CartController extends Controller
         $id = $data['id'];
 
         $cart = session()->get('cart');
-        $existingPro = Cart::where(["product_id" => $id])->first();
+         $existingPro = Cart::where("product_id" ,$id)->first();
         
         
         if (Auth::check()) {
-            if (isset($cart[$id]['id']) == $data['id']) {
+            if ( isset($cart[$id]['id']) && $cart[$id]['id'] == $data['id']) {
                 unset($cart[$id]);
                 $req->session()->put('cart', $cart);
                 $this->createCart($req);
@@ -89,11 +91,19 @@ class CartController extends Controller
 
     protected function createCart(Request $req){
         $data = $req->all();
-        $cartDB = new Cart();
-        $cartDB->user_id = Auth::id();
-        $cartDB->product_id = $data['id'];
-        $cartDB->quantity = $data['quantity'];
-        $cartDB->save();
+        $userId = Auth::id();
+        $productId = $data['id'];
+        $user = User::find($userId);
+
+
+        $user->products()-> attach([
+            $productId => [
+                'quantity' => $data['quantity']
+            ]
+        ]);
+        
+
+        
     }
 
     
